@@ -1,0 +1,65 @@
+#echo 'autostart 0' >> ob_test &
+
+# start compton using our config
+compton -b --config ~/.config/compton.conf &
+
+# polybar
+#polybar --config=$HOME/.config/polybar/config-openbox bar1 &
+
+
+(sleep 3s && tint2) &
+(sleep 3s && nm-applet) &
+#(sleep 3s && volumeicon) &
+(sleep 3s && pasystray-git) &
+
+#bluetooth#
+(sleep 3s && blueman-applet) &
+#(sleep 3; blueberry-tray) &
+#systemctl start bluetooth
+
+##Clipboard Manager
+(sleep 3; clipit) &
+
+
+
+# laptops without a numpad may want to comment this out
+#numlockx &
+
+(sleep 3s && xset r rate 350 32) &
+
+#echo 'autostart xset' >> ob_test &
+
+## GNOME PolicyKit authentication
+(sleep 3s && /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1) &
+
+# wallpaper
+(sleep 1; nitrogen --restore) &
+
+# xfce settings
+(sleep 2s && xfsettingsd) &
+# TODO!! : SESSION_MANAGER environment variable not defined
+
+(sleep 2s && xfce4-power-manager) &
+
+
+# plank, & skippy
+#(sleep 2; plank) &
+(sleep 2; skippy-xd --start-daemon) &
+
+(sleep 2s && redshift -b 1.0:.7) &
+
+#syndaemon -i 20.0 -t -K -R &
+#synclient TouchpadOff=1 &
+#TODO if touchpad needs to be disabled
+
+(sleep 2s && xscreensaver) &
+
+(sleep 2s && ponymix --input set-volume 60) &
+xinput --set-prop `xinput list | grep Kensington | awk '{ print $7 }' | sed 's/id=//g'` 326 1 &
+#this is my script to backup personal docs
+#backup-personal &
+
+#pull remote thoughts from the server
+(sleep 2s && /usr/local/bin/pull_thoughts) &
+
+#source ~/.bash_profile &
