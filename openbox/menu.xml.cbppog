@@ -27,12 +27,89 @@
         <execute>geany</execute>
       </action>
     </item>
-    <item label="VS Code">
+    <item label="vlc">
       <action name="Execute">
-        <execute>code</execute>
+        <execute>vlc</execute>
       </action>
     </item>
     <separator />
+    <menu id="accessories" label="Accessories">
+      <item label="Catfish File Search">
+        <action name="Execute">
+          <execute>catfish</execute>
+        </action>
+      </item>
+      <item label="Archive Manager">
+        <action name="Execute">
+          <execute>file-roller</execute>
+        </action>
+      </item>
+      <item label="Geany Text Editor">
+        <action name="Execute">
+          <execute>geany</execute>
+        </action>
+      </item>
+      <item label="Task Manager (htop)">
+        <action name="Execute">
+          <execute>x-terminal-emulator -e htop</execute>
+        </action>
+      </item>
+      <item label="Terminal">
+        <action name="Execute">
+          <execute>x-terminal-emulator</execute>
+        </action>
+      </item>
+      <item label="Thunar File Manager">
+        <action name="Execute">
+          <execute>thunar</execute>
+        </action>
+      </item>
+      <item label="Thunar File Manager (root)">
+        <action name="Execute">
+          <execute>cbpp-gksudo thunar</execute>
+        </action>
+      </item>
+    </menu>
+    <menu id="graphics" label="Graphics">
+      <item label="GIMP">
+        <action name="Execute">
+          <execute>gimp</execute>
+        </action>
+      </item>
+      <item label="Viewnior Image Viewer">
+        <action name="Execute">
+          <execute>viewnior</execute>
+        </action>
+      </item>
+      <menu id="graphicsScreenshots" label="Take Screenshot">
+        <item label="Screenshooter">
+          <action name="Execute">
+            <execute>xfce4-screenshooter</execute>
+          </action>
+        </item>
+        <separator label="scrot" />
+        <item label="Now">
+          <action name="Execute">
+            <execute>scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp;amp; viewnior ~/images/$f'</execute>
+          </action>
+        </item>
+        <item label="In 5 Seconds...">
+          <action name="Execute">
+            <execute>scrot -d 5 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp;amp; viewnior ~/images/$f'</execute>
+          </action>
+        </item>
+        <item label="In 10 Seconds...">
+          <action name="Execute">
+            <execute>scrot -d 10 '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp;amp; viewnior ~/images/$f'</execute>
+          </action>
+        </item>
+        <item label="Selected Area... (click &amp; drag mouse)">
+          <action name="Execute">
+            <execute>scrot -s '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp;amp; viewnior ~/images/$f'</execute>
+          </action>
+        </item>
+      </menu>
+    </menu>
     <menu id="multimedia" label="Multimedia">
       <item label="VLC Media Player">
         <action name="Execute">
@@ -44,32 +121,27 @@
           <execute>mate-volume-control</execute>
         </action>
       </item>
-      <item label="Steam">
+      <item label="Xfburn">
         <action name="Execute">
-          <execute>steam -vgui</execute>
-        </action>
-      </item>
-      <item label="Minecraft">
-        <action name="Execute">
-          <execute>/home/thomas/software/GDLauncher.AppImage</execute>
+          <execute>xfburn</execute>
         </action>
       </item>
     </menu>
     <menu id="network" label="Network">
       <menu execute="cbpp-x-www-browser-pipemenu" id="wwwbrowsers" label="WWW Browsers" />
-      <item label="Discord">
-        <action name="Execute">
-          <execute>discord</execute>
-        </action>
-      </item>
       <item label="Filezilla">
         <action name="Execute">
           <execute>filezilla</execute>
         </action>
       </item>
-      <item label="torrent">
+      <item label="Transmission BitTorrent Client">
         <action name="Execute">
-          <execute>qbittorrent</execute>
+          <execute>transmission-gtk</execute>
+        </action>
+      </item>
+      <item label="HexChat IRC Client">
+        <action name="Execute">
+          <execute>hexchat</execute>
         </action>
       </item>
       <item label="Remote Filesystems">
@@ -78,12 +150,18 @@
         </action>
       </item>
       <menu execute="cbpp-remote-desktop-pipemenu" id="remotedesktop" label="Remote Desktop" />
+      <menu execute="cbpp-sshconfig-pipemenu" id="sshconfig" label="SSH" />
     </menu>
     <menu id="office" label="Office">
       <menu execute="cbpp-libreoffice-pipemenu" id="libreoffice" label="LibreOffice" />
       <item label="Google Docs">
         <action name="Execute">
           <execute>x-www-browser https://drive.google.com/</execute>
+        </action>
+      </item>
+      <item label="AbiWord Word Processor">
+        <action name="Execute">
+          <execute>abiword</execute>
         </action>
       </item>
       <item label="Gnumeric Spreadsheet">
