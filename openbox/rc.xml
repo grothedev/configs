@@ -442,7 +442,8 @@
           <enabled>true</enabled>
           <name>Logout</name>
         </startupnotify>
-        <command>x-terminal-emulator --geometry 400x240+700-300 -e ncrs-exit</command>
+        <!--<command>x-terminal-emulator - - geometry 400x240+700-300 -e ncrs-exit</command>-->
+        <command>cbpp-exit</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -493,14 +494,24 @@
       <action name="MoveToCenter"/>
     </keybind>
     <keybind key="W-Left">
-      <action name = "Unmaximize"/>
-      <action name = "MoveToEdge"><direction>West</direction></action>
-      <action name="MoveResizeTo"><height>100%</height><width>50%</width></action>
+      <action name="Unmaximize"/>
+      <action name="MoveToEdge">
+        <direction>West</direction>
+      </action>
+      <action name="MoveResizeTo">
+        <height>100%</height>
+        <width>50%</width>
+      </action>
     </keybind>
     <keybind key="W-Right">
-      <action name = "Unmaximize"/>
-      <action name = "MoveToEdge"><direction>East</direction></action>
-      <action name="MoveResizeTo"><height>100%</height><width>50%</width></action>
+      <action name="Unmaximize"/>
+      <action name="MoveToEdge">
+        <direction>East</direction>
+      </action>
+      <action name="MoveResizeTo">
+        <height>100%</height>
+        <width>50%</width>
+      </action>
     </keybind>
     <keybind key="W-A-Down">
       <action name="Iconify"/>
@@ -518,6 +529,21 @@
     <keybind key="XF86AudioMute">
       <action name="Execute">
         <command>pamixer -t</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPlay">
+      <action name="Execute">
+        <command>playerctl play-pause</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioPrev">
+      <action name="Execute">
+        <command>playerctl previous</command>
+      </action>
+    </keybind>
+    <keybind key="XF86AudioNext">
+      <action name="Execute">
+        <command>playerctl next</command>
       </action>
     </keybind>
   </keyboard>
