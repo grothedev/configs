@@ -1,0 +1,24 @@
+server {
+	listen 8000 ssl;
+	server_name belthelziquor.com www.belthelziquor.com;
+	#root /srv/www/htdocs; #/srv/www/homesite/public;
+
+	location /focalboard/ {
+		proxy_pass http://localhost:8000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
+
+	access_log /var/log/nginx/static.access.log;
+	error_log /var/log/nginx/static.error.log;
+	
+	#listen 443 ssl; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/belthelziquor.com/fullchain.pem; # managed by Certbot
+	ssl_certificate_key /etc/letsencrypt/live/belthelziquor.com/privkey.pem; # managed by Certbot
+	include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+	ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}

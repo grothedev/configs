@@ -1,0 +1,48 @@
+[Unit]
+Description= collaborative drawingboard website
+After=network.target
+
+[Service]
+User=nginx
+Group=nginx
+
+WorkingDirectory=/srv/drawingboard/
+
+ExecStart=/usr/bin/node index.js
+
+# Restart policy
+Restart=on-failure
+RestartSec=10
+
+# Standard output and error logs
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=drawingboard
+
+# Environment variables
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin:/usr/sbin
+#Environment=PORT=3000
+# For multiple environment variables, you can also use:
+
+# Resource limits (optional but recommended)
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Security settings (recommended for production)
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/drawingboard/
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+# Memory and CPU limits (optional)
+MemoryLimit=1G
+CPUQuota=50%
+
+[Install]
+# Start automatically on boot
+WantedBy=multi-user.target

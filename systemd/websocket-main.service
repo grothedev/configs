@@ -1,0 +1,46 @@
+#https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html
+[Unit]
+Description=Some NodeJS Application 
+After=network.target
+
+[Service]
+User=root 
+#root because need to read certbot certs
+
+WorkingDirectory=/srv/www/ws
+
+ExecStart=npm run start
+
+# Restart policy
+Restart=on-failure
+RestartSec=4
+
+StandardOutput=journal
+StandardError=journal
+#SyslogIdentifier=
+
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin:/usr/sbin
+#Environment=PORT=3000
+EnvironmentFile=/srv/www/ws/.env
+
+# Resource limits (optional but recommended)
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Security settings (recommended for production)
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/srv/www/ws /etc/letsencrypt/
+PrivateTmp=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+
+# Memory and CPU limits (optional)
+MemoryLimit=1G
+CPUQuota=50%
+
+[Install]
+# Start automatically on boot
+WantedBy=multi-user.target
